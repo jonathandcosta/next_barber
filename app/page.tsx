@@ -8,6 +8,7 @@ import { Badge } from "./_components/ui/badge"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop-item"
+import { quickSearchOptions } from "./_constants/searchIcons"
 
 
 const page = async () => {
@@ -32,32 +33,16 @@ const page = async () => {
         {/* NAVEGAÇÃO */}
 
         <div className="flex mt-6 gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
-          <Button className="gap-2" variant="secondary">
-            <Image src="/scissors.svg" width={16} height={16} alt="tesoura" />
-            Cabelo
-          </Button>
-
-          <Button className="gap-2" variant="secondary">
-            <Image src="/mustache.svg" width={16} height={16} alt="barba" />
-            Barba
-          </Button>
-
-          <Button className="gap-2" variant="secondary">
-            <Image src="/razor.svg" width={16} height={16} alt="lamina" />
-            Acabamento
-          </Button>
-          <Button className="gap-2" variant="secondary">
-            <Image src="/eyebrow.svg" width={16} height={16} alt="sobrancelha" />
-            Sobrancelha
-          </Button>
-          <Button className="gap-2" variant="secondary">
-            <Image src="/towel.svg" width={16} height={16} alt="toalha" />
-            Massagem
-          </Button>
-          <Button className="gap-2" variant="secondary">
-            <Image src="/shampoo.svg" width={16} height={16} alt="shampoo" />
-            Hidratação
-          </Button>
+          {quickSearchOptions.map((option) => (
+            <Button className="gap-2" variant="secondary" key={option.title}>
+              <Image
+                src={option.imageUrl}
+                width={16}
+                height={16}
+                alt={option.title} />
+              {option.title}
+            </Button>
+          ))}
         </div>
 
         {/* BANNER */}
