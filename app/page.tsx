@@ -29,6 +29,37 @@ const page = async () => {
           </Button>
         </div>
 
+        {/* NAVEGAÇÃO */}
+
+        <div className="flex mt-6 gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          <Button className="gap-2" variant="secondary">
+            <Image src="/scissors.svg" width={16} height={16} alt="tesoura" />
+            Cabelo
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image src="/mustache.svg" width={16} height={16} alt="barba" />
+            Barba
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image src="/razor.svg" width={16} height={16} alt="lamina" />
+            Acabamento
+          </Button>
+          <Button className="gap-2" variant="secondary">
+            <Image src="/eyebrow.svg" width={16} height={16} alt="sobrancelha" />
+            Sobrancelha
+          </Button>
+          <Button className="gap-2" variant="secondary">
+            <Image src="/towel.svg" width={16} height={16} alt="toalha" />
+            Massagem
+          </Button>
+          <Button className="gap-2" variant="secondary">
+            <Image src="/shampoo.svg" width={16} height={16} alt="shampoo" />
+            Hidratação
+          </Button>
+        </div>
+
         {/* BANNER */}
 
         <div className="relative h-[150px] w-full mt-6">
