@@ -73,6 +73,23 @@ const page = async () => {
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
+
+        {/* POPULARES */}
+
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">populares</h2>
+        <h1>adicionar + cards</h1>
+
+        {/* FOOTER */}
+
+        <footer>
+          <Card>
+            <CardContent className="px-5 py-6">
+              <p className="text-sm text-gray-400">
+                © 2023 Copyright<span className="font-bold"> FSW Barber</span>
+              </p>
+            </CardContent>
+          </Card>
+        </footer>
       </div>
     </div >
   )
