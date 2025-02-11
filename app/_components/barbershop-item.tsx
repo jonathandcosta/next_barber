@@ -35,7 +35,7 @@ const BarbershopItem = ({ barbershop }: BarbershoItemProps) => {
         <div className="px-1 py-3">
           <h3 className="truncate font-semibold">{barbershop.name}</h3>
           <p className="truncate text-sm text-gray-400">{barbershop.adress}</p>
-          <Button variant="secondary" className="mt-3 w-full">
+          <Button variant="secondary" className="mt-3 w-full" asChild>
             <Link href={`/barbershops/${barbershop.id}`}>Reservar</Link>
           </Button>
         </div>
