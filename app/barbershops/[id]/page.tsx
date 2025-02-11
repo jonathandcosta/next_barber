@@ -3,6 +3,7 @@ import { db } from "@/app/_lib/prisma";
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface BarbershopPageProps {
   params: {
@@ -18,6 +19,9 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
     }
   })
 
+  if (!barbershop) {
+    return notFound()
+  }
 
   return (
     <>
