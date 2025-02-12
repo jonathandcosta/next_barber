@@ -2,10 +2,11 @@ import Image from "next/image"
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { CalendarIcon, HomeIcon, LogOutIcon, MenuIcon } from "lucide-react";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Avatar } from "./ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import { quickSearchOptions } from "../_constants/searchIcons";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -37,14 +38,18 @@ const Header = () => {
                 <p className="font-bold">Jonathan Costa</p>
                 <p className="text-xs">jddatsoc@gmail.com</p>
               </div>
-
             </div>
 
             <div className="flex flex-col gap-4 border-b border-solid py-5">
-              <Button className="justify-start gap-2" variant={"ghost"}>
-                <HomeIcon size={18} />
-                Ínicio
-              </Button>
+              <SheetClose asChild>
+                <Button className="justify-start gap-2" variant="ghost" asChild>
+                  <Link href='/'>
+                    <HomeIcon size={18} />
+                    Ínicio
+                  </Link>
+                </Button>
+              </SheetClose>
+
               <Button className="justify-start gap-2" variant="ghost">
                 <CalendarIcon size={18} />
                 Agendamentos
