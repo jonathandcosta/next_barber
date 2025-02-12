@@ -1,10 +1,11 @@
 import Image from "next/image"
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import { CalendarIcon, HomeIcon, MenuIcon } from "lucide-react";
+import { CalendarIcon, HomeIcon, LogOutIcon, MenuIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Avatar } from "./ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
+import { quickSearchOptions } from "../_constants/searchIcons";
 
 const Header = () => {
   return (
@@ -50,7 +51,32 @@ const Header = () => {
               </Button>
             </div>
 
+            <div className="flex flex-col gap-4 border-b border-solid py-5">
+              {quickSearchOptions.map((option) => (
+                <Button
+                  key={option.title}
+                  className="justify-start gap-2"
+                  variant='ghost'                >
+                  <Image
+                    src={option.imageUrl}
+                    alt={option.title}
+                    height={18}
+                    width={18}
+                  />
+                  {option.title}
+                </Button>
+              ))}
+            </div>
 
+            <div className=" flex flex-col py-5">
+              <Button
+                className="justify-start gap-2"
+                variant='ghost'
+              >
+                <LogOutIcon size={18} />
+                Sair da conta
+              </Button>
+            </div>
           </SheetContent>
         </Sheet>
 
