@@ -1,3 +1,4 @@
+import Footer from "@/app/_components/footer";
 import PhoneItem from "@/app/_components/phone-item";
 import ServiceItem from "@/app/_components/services-item";
 import { Button } from "@/app/_components/ui/button";
@@ -92,6 +93,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 }
