@@ -1,11 +1,10 @@
-import { AvatarImage } from "@radix-ui/react-avatar";
-import { Avatar } from "./avatar";
-import { SheetClose, SheetContent, SheetHeader, SheetTitle } from "./sheet";
-import { Button } from "./button";
+import { SheetClose, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
+import { Button } from "./ui/button";
 import Link from "next/link";
 import { CalendarIcon, HomeIcon, LogOutIcon } from "lucide-react";
 import { quickSearchOptions } from "@/app/_constants/searchIcons";
 import Image from "next/image";
+import { Avatar, AvatarImage } from "./ui/avatar";
 
 const SidebarSheet = () => {
   return (
