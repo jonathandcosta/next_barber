@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CalendarIcon, HomeIcon, LogInIcon, LogOutIcon } from "lucide-react";
 import { quickSearchOptions } from "@/app/_constants/searchIcons";
 import Image from "next/image";
-import { Avatar, AvatarImage } from "./ui/avatar";
+// import { Avatar, AvatarImage } from "./ui/avatar";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 
 const SidebarSheet = () => {

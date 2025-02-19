@@ -7,7 +7,6 @@ import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop-item"
 import { quickSearchOptions } from "./_constants/searchIcons"
 import BookingItem from "./_components/booking-item"
-import Footer from "./_components/footer"
 
 
 const page = async () => {
@@ -73,9 +72,6 @@ const page = async () => {
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">populares</h2>
         <h1>adicionar + cards</h1>
 
-        {/* FOOTER */}
-
-        <Footer />
       </div>
     </div >
   )
