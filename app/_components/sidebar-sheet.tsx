@@ -1,3 +1,5 @@
+"use client"
+
 import { SheetClose, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -6,8 +8,11 @@ import { quickSearchOptions } from "@/app/_constants/searchIcons";
 import Image from "next/image";
 // import { Avatar, AvatarImage } from "./ui/avatar";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { signIn } from "next-auth/react";
 
 const SidebarSheet = () => {
+  const handleLoginWithGoogleClick = () => signIn("google")
+
   return (
     <SheetContent className="w-[400px] sm:w-[540px]">
       <SheetHeader>
@@ -34,7 +39,11 @@ const SidebarSheet = () => {
               </DialogDescription>
             </DialogHeader>
 
-            <Button variant="outline" className="gap-1 font-bold">
+            <Button
+              variant="outline"
+              className="gap-1 font-bold"
+              onClick={handleLoginWithGoogleClick}
+            >
               <Image
                 alt="Login com o google"
                 src='/Google.svg'
