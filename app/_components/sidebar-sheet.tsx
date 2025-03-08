@@ -8,10 +8,15 @@ import { quickSearchOptions } from "@/app/_constants/searchIcons";
 import Image from "next/image";
 // import { Avatar, AvatarImage } from "./ui/avatar";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Avatar, AvatarImage } from "./ui/avatar";
 
 const SidebarSheet = () => {
+  const { data } = useSession()
+
   const handleLoginWithGoogleClick = () => signIn("google")
+
+  const handleLogoutClick = () => signOut()
 
   return (
     <SheetContent className="w-[400px] sm:w-[540px]">
@@ -20,52 +25,54 @@ const SidebarSheet = () => {
       </SheetHeader>
 
       <div className="flex items-center border-b border-solid gap-3 py-5 justify-between">
-        <h2 className="font-bold">Olá, faça seu login!</h2>
-        <Dialog>
 
-          <DialogTrigger asChild>
+        {data?.user ? (
+          <div className="flex items-center gap-2">
+            <Avatar>
+              <AvatarImage src={data?.user?.image ?? ''} />
+            </Avatar>
 
-            <Button size='icon'>
-              <LogInIcon />
-            </Button>
+            <div>
+              <p className="font-bold">{data.user.name}</p>
+              <p className="text-xs">{data.user.email}</p>
+            </div>
+          </div>
+        ) : (
+          <>
+            <h2 className="font-bold">Olá, faça seu login!</h2>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size='icon'>
+                  <LogInIcon />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="w-[90%]">
+                <DialogHeader>
+                  <DialogTitle>Faça login na plataforma</DialogTitle>
+                  <DialogDescription>
+                    Conecte-se usando sua conta do Google.
+                  </DialogDescription>
+                </DialogHeader>
+                <Button
+                  variant="outline"
+                  className="gap-1 font-bold"
+                  onClick={handleLoginWithGoogleClick}
+                >
+                  <Image
+                    alt="Login com o google"
+                    src='/Google.svg'
+                    width={16}
+                    height={16}
+                  />
+                  Google
+                </Button>
+              </DialogContent>
+            </Dialog>
+          </>
+        )
 
-          </DialogTrigger>
+        }
 
-          <DialogContent className="w-[90%]">
-            <DialogHeader>
-              <DialogTitle>Faça login na plataforma</DialogTitle>
-              <DialogDescription>
-                Conecte-se usando sua conta do Google.
-              </DialogDescription>
-            </DialogHeader>
-
-            <Button
-              variant="outline"
-              className="gap-1 font-bold"
-              onClick={handleLoginWithGoogleClick}
-            >
-              <Image
-                alt="Login com o google"
-                src='/Google.svg'
-                width={16}
-                height={16}
-              />
-              Google
-            </Button>
-
-          </DialogContent>
-        </Dialog>
-
-
-
-        {/* <Avatar>
-          <AvatarImage src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fHww" />
-        </Avatar>
-
-        <div>
-          <p className="font-bold">Jonathan Costa</p>
-          <p className="text-xs">jddatsoc@gmail.com</p>
-        </div> */}
       </div>
 
       <div className="flex flex-col gap-4 border-b border-solid py-5">
@@ -105,8 +112,11 @@ const SidebarSheet = () => {
         <Button
           className="justify-start gap-2"
           variant='ghost'
+          onClick={handleLogoutClick}
         >
-          <LogOutIcon size={18} />
+          <LogOutIcon
+            size={18}
+          />
           Sair da conta
         </Button>
       </div>
