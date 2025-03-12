@@ -1,7 +1,12 @@
+'use client'
+
 import { BarbershopService } from "@prisma/client";
 import { Card, CardContent } from "./ui/card";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { Calendar } from "./ui/calendar";
+import { ptBR } from "date-fns/locale";
 
 interface ServiceItemProps {
   service: BarbershopService
@@ -29,7 +34,20 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                 currency: "BRL",
               }).format(Number(service.price))}
             </p>
-            <Button size='sm' variant={"secondary"}>Reservar</Button>
+
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant='secondary' size='sm'>Reservar</Button>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>Fazer Reserva</SheetTitle>
+                </SheetHeader>
+                <div className="py-5">
+                  <Calendar mode="single" locale={ptBR}></Calendar>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </CardContent>
