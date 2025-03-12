@@ -44,7 +44,30 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                   <SheetTitle>Fazer Reserva</SheetTitle>
                 </SheetHeader>
                 <div className="py-5">
-                  <Calendar mode="single" locale={ptBR}></Calendar>
+                  <Calendar mode="single" locale={ptBR} styles={{
+                    head_cell: {
+                      width: "100%",
+                      textTransform: "capitalize",
+                    },
+                    cell: {
+                      width: "100%",
+                    },
+                    button: {
+                      width: "100%",
+                    },
+                    nav_button_previous: {
+                      width: "32px",
+                      height: "32px",
+                    },
+                    nav_button_next: {
+                      width: "32px",
+                      height: "32px",
+                    },
+                    caption: {
+                      textTransform: "capitalize",
+                    },
+                  }}
+                  />
                 </div>
               </SheetContent>
             </Sheet>
