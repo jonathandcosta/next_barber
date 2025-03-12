@@ -13,6 +13,30 @@ interface ServiceItemProps {
   service: BarbershopService
 }
 
+const TIME_LIST = [
+  "08:00",
+  "08:30",
+  "09:00",
+  "09:30",
+  "10:00",
+  "10:30",
+  "11:00",
+  "11:30",
+  "12:00",
+  "12:30",
+  "13:00",
+  "13:30",
+  "14:00",
+  "14:30",
+  "15:00",
+  "15:30",
+  "16:00",
+  "16:30",
+  "17:00",
+  "17:30",
+  "18:00",
+]
+
 const ServiceItem = ({ service }: ServiceItemProps) => {
 
   const [selectDay, setSelectDay] = useState<Date | undefined>(undefined)
@@ -46,11 +70,11 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
               <SheetTrigger asChild>
                 <Button variant='secondary' size='sm'>Reservar</Button>
               </SheetTrigger>
-              <SheetContent>
+              <SheetContent className="px-0">
                 <SheetHeader>
                   <SheetTitle>Fazer Reserva</SheetTitle>
                 </SheetHeader>
-                <div className="py-5">
+                <div className="py-5 border-b border-solid">
                   <Calendar
                     mode="single"
                     locale={ptBR}
@@ -80,6 +104,17 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                       },
                     }}
                   />
+                </div>
+                <div className="p-5 gap-3 flex overflow-x-auto [&::-webkit-scrollbar]:hidden">
+                  {TIME_LIST.map((time) => (
+                    <Button
+                      key={time}
+                      variant='outline'
+                      className="rounded-full"
+                    >
+                      {time}
+                    </Button>
+                  ))}
                 </div>
               </SheetContent>
             </Sheet>
