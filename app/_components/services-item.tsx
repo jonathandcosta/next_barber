@@ -105,17 +105,20 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                     }}
                   />
                 </div>
-                <div className="p-5 gap-3 flex overflow-x-auto [&::-webkit-scrollbar]:hidden">
-                  {TIME_LIST.map((time) => (
-                    <Button
-                      key={time}
-                      variant='outline'
-                      className="rounded-full"
-                    >
-                      {time}
-                    </Button>
-                  ))}
-                </div>
+
+                {selectDay && (
+                  <div className="p-5 gap-3 flex overflow-x-auto [&::-webkit-scrollbar]:hidden">
+                    {TIME_LIST.map((time) => (
+                      <Button
+                        key={time}
+                        variant='outline'
+                        className="rounded-full"
+                      >
+                        {time}
+                      </Button>
+                    ))}
+                  </div>
+                )}
               </SheetContent>
             </Sheet>
           </div>
