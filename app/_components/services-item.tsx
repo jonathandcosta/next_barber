@@ -7,12 +7,19 @@ import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Calendar } from "./ui/calendar";
 import { ptBR } from "date-fns/locale";
+import { useState } from "react";
 
 interface ServiceItemProps {
   service: BarbershopService
 }
 
 const ServiceItem = ({ service }: ServiceItemProps) => {
+
+  const [selectDay, setSelectDay] = useState<Date | undefined>(undefined)
+
+  const handleDateSelect = (date: Date | undefined) => {
+    setSelectDay(date)
+  }
 
   return (
     <Card>
@@ -44,29 +51,34 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                   <SheetTitle>Fazer Reserva</SheetTitle>
                 </SheetHeader>
                 <div className="py-5">
-                  <Calendar mode="single" locale={ptBR} styles={{
-                    head_cell: {
-                      width: "100%",
-                      textTransform: "capitalize",
-                    },
-                    cell: {
-                      width: "100%",
-                    },
-                    button: {
-                      width: "100%",
-                    },
-                    nav_button_previous: {
-                      width: "32px",
-                      height: "32px",
-                    },
-                    nav_button_next: {
-                      width: "32px",
-                      height: "32px",
-                    },
-                    caption: {
-                      textTransform: "capitalize",
-                    },
-                  }}
+                  <Calendar
+                    mode="single"
+                    locale={ptBR}
+                    selected={selectDay}
+                    onSelect={handleDateSelect}
+                    styles={{
+                      head_cell: {
+                        width: "100%",
+                        textTransform: "capitalize",
+                      },
+                      cell: {
+                        width: "100%",
+                      },
+                      button: {
+                        width: "100%",
+                      },
+                      nav_button_previous: {
+                        width: "32px",
+                        height: "32px",
+                      },
+                      nav_button_next: {
+                        width: "32px",
+                        height: "32px",
+                      },
+                      caption: {
+                        textTransform: "capitalize",
+                      },
+                    }}
                   />
                 </div>
               </SheetContent>
