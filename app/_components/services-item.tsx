@@ -111,7 +111,7 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                 </div>
 
                 {selectDay && (
-                  <div className="p-5 gap-3 flex overflow-x-auto [&::-webkit-scrollbar]:hidden">
+                  <div className="p-5 gap-3 flex overflow-x-auto [&::-webkit-scrollbar]:hidden border-b border-solid">
                     {TIME_LIST.map((time) => (
                       <Button
                         key={time}
@@ -124,6 +124,24 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                     ))}
                   </div>
                 )}
+
+                {selectTime && (
+                  <div className="p-5">
+                    <Card>
+                      <CardContent>
+                        <div className="flex items-center justify-between">
+                          <h2 className="text-sm">{service.name}</h2>
+                          <p className="text-sm">{Intl.NumberFormat('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL',
+                          }).format(Number(service.price))}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
+
+
               </SheetContent>
             </Sheet>
           </div>
