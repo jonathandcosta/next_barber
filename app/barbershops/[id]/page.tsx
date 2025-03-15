@@ -66,7 +66,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
         <h1 className="mb-3 text-xl font-bold">{barbershop.name}</h1>
         <div className="mb-2 flex items-center gap-2">
           <MapPinIcon className="text-primary" size={18} />
-          <p className="text-sm">{barbershop?.adress}</p>
+          <p className="text-sm">{barbershop?.address}</p>
         </div>
         <div className="flex items-center gap-2">
           <StarIcon className="fill-primary text-primary" size={18} />
@@ -83,7 +83,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
         <h2 className="uppercase text-gray-400 font-bold text-xs mb-3">serviços</h2>
         <div className="space-y-3">
           {barbershop.services.map((service) => (
-            <ServiceItem key={service.id} service={service} />
+            <ServiceItem key={service.id} barbershop={barbershop} service={service} />
           ))}
         </div>
       </div>

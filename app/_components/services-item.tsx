@@ -1,6 +1,6 @@
 'use client'
 
-import { BarbershopService } from "@prisma/client";
+import { Barbershop, BarbershopService } from "@prisma/client";
 import { Card, CardContent } from "./ui/card";
 import Image from "next/image";
 import { Button } from "./ui/button";
@@ -11,6 +11,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 interface ServiceItemProps {
   service: BarbershopService
+  barbershop: Pick<Barbershop, "name">
 }
 
 const TIME_LIST = [
@@ -37,7 +38,7 @@ const TIME_LIST = [
   "18:00",
 ]
 
-const ServiceItem = ({ service }: ServiceItemProps) => {
+const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
 
   const [selectDay, setSelectDay] = useState<Date | undefined>(undefined)
   const handleDateSelect = (date: Date | undefined) => {
@@ -131,7 +132,7 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                       <CardContent className="p-3 space-y-3">
                         <div className="flex items-center justify-between">
                           <h2 className="font-bold">{service.name}</h2>
-                          <p className="text-sm">{Intl.NumberFormat('pt-BR', {
+                          <p className="text-sm font-bold">{Intl.NumberFormat('pt-BR', {
                             style: 'currency',
                             currency: 'BRL',
                           }).format(Number(service.price))}</p>
@@ -150,12 +151,15 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                           <p className="text-sm">{selectTime}</p>
                         </div>
 
+                        <div className="flex items-center justify-between">
+                          <h2 className="text-sm text-gray-400">Barbearia</h2>
+                          <p className="text-sm">{barbershop.name}</p>
+                        </div>
+
                       </CardContent>
                     </Card>
                   </div>
                 )}
-
-
               </SheetContent>
             </Sheet>
           </div>
