@@ -8,7 +8,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui
 import { Calendar } from "./ui/calendar";
 import { ptBR } from "date-fns/locale";
 import { useState } from "react";
-
+import { format } from "date-fns";
 interface ServiceItemProps {
   service: BarbershopService
 }
@@ -125,17 +125,31 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                   </div>
                 )}
 
-                {selectTime && (
+                {selectTime && selectDay && (
                   <div className="p-5">
                     <Card>
-                      <CardContent>
+                      <CardContent className="p-3 space-y-3">
                         <div className="flex items-center justify-between">
-                          <h2 className="text-sm">{service.name}</h2>
+                          <h2 className="font-bold">{service.name}</h2>
                           <p className="text-sm">{Intl.NumberFormat('pt-BR', {
                             style: 'currency',
                             currency: 'BRL',
                           }).format(Number(service.price))}</p>
                         </div>
+
+                        <div className="flex items-center justify-between">
+                          <h2 className="text-sm text-gray-400">Data</h2>
+                          <p className="text-sm capitalize">
+                            {format(selectDay, "d 'de' MMMM", {
+                              locale: ptBR,
+                            })}</p>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                          <h2 className="text-sm text-gray-400">Horário</h2>
+                          <p className="text-sm">{selectTime}</p>
+                        </div>
+
                       </CardContent>
                     </Card>
                   </div>
