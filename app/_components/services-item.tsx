@@ -4,7 +4,7 @@ import { Barbershop, BarbershopService } from "@prisma/client";
 import { Card, CardContent } from "./ui/card";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Calendar } from "./ui/calendar";
 import { ptBR } from "date-fns/locale";
 import { useState } from "react";
@@ -155,11 +155,15 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                           <h2 className="text-sm text-gray-400">Barbearia</h2>
                           <p className="text-sm">{barbershop.name}</p>
                         </div>
-
                       </CardContent>
                     </Card>
                   </div>
                 )}
+                <SheetFooter className="px-5">
+                  <SheetClose asChild>
+                    <Button type="submit">Confirmar</Button>
+                  </SheetClose>
+                </SheetFooter>
               </SheetContent>
             </Sheet>
           </div>
