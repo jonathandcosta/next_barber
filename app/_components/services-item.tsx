@@ -8,7 +8,10 @@ import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, 
 import { Calendar } from "./ui/calendar";
 import { ptBR } from "date-fns/locale";
 import { useState } from "react";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
+import { createBooking } from "../_actions/create-booking";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 interface ServiceItemProps {
   service: BarbershopService
   barbershop: Pick<Barbershop, "name">
@@ -48,6 +51,30 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
   const [selectTime, setSelectTime] = useState<string | undefined>(undefined)
   const handleTimeSelect = (time: string) => {
     setSelectTime(time)
+  }
+
+
+  const { data } = useSession()
+
+  const handleCreateBooking = async () => {
+    try {
+      if (!selectDay || !selectTime) return
+      const hour = Number(selectTime.split(":")[0])
+      const minute = Number(selectTime.split(":")[1])
+      const newDate = set(selectDay, {
+        minutes: minute,
+        hours: hour,
+      })
+      await createBooking({
+        serviceId: service.id,
+        userId: (data?.user as any).id,
+        date: newDate,
+      })
+      toast.success("Reserva criada com sucesso!")
+    } catch (error) {
+      console.log(error)
+      toast.error('Erro ao criar reserva!')
+    }
   }
 
   return (
@@ -159,9 +186,12 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                     </Card>
                   </div>
                 )}
-                <SheetFooter className="px-5">
+                <SheetFooter className="px-5 mt-5">
                   <SheetClose asChild>
-                    <Button type="submit">Confirmar</Button>
+                    <Button
+                      onClick={handleCreateBooking}
+                      disabled={!selectDay || !selectTime}
+                    >Confirmar</Button>
                   </SheetClose>
                 </SheetFooter>
               </SheetContent>
