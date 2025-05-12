@@ -17,6 +17,7 @@ const handler = NextAuth({
       session.user = {
         ...session.user,
         id: user.id,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any;
       return session
     }
